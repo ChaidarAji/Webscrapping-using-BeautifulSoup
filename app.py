@@ -55,7 +55,7 @@ df = df.astype({'rating':'float', 'metascore': 'int', 'votes': 'int'})
 @app.route("/")
 def index(): 
 	top_7_popularity = df.sort_values(by='votes', ascending=False).head(7).copy()
-	card_data = f'{df["votes"].mean().round(2)}' #be careful with the " and ' 
+	card_data = f'{round(df["votes"].mean(),2)}' #be careful with the " and ' 
 
 	# generate plot
 	ax = top_7_popularity[['title', 'votes']].set_index('title').sort_values('votes').plot(kind='barh', figsize = (16,5)) 
